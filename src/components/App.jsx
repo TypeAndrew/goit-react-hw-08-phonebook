@@ -65,7 +65,7 @@ export const App = () => {
   },[])
 
   useEffect((valueStorage) => {
-   // if (prevState !== contacts.length) {
+   // if (prevState !== contacts.length) {//
     localStorage.setItem("contacts", JSON.stringify(contacts));
     console.log('edit');
   // }
