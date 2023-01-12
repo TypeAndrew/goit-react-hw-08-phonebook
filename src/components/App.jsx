@@ -1,72 +1,77 @@
-import { Component } from "react";
+
 import { Contacts } from './Contacts/Contacts';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { nanoid } from 'nanoid'
+import { useEffect, useState } from 'react';
 
-export class App extends Component {
+export const App = () => {
   
-  state = {
-    contacts: [
-    {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
-    {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
-    {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
-    {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
-  ],
-    filter: ''   
-  }
+  //state = {
+  const [contacts, setContacts] = useState(
+     [
+    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
+    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
+    { id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
+    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
+    ]
+  );
+  const [filter, setFilter] = useState('');   
+  
 
-  handleFilter= (evt) => {
+  const handleFilter= (evt) => {
       
-    this.setState({ filter: evt.target.value });
+    setFilter(evt.target.value);
     //this.getFilterValueOn();
   }
   
-  handleDelete = (evt) => {
+  const handleDelete = (evt) => {
     
-    this.setState(prevState => {
-      const newContacts = prevState.contacts.filter(el => el.name !== evt.target.id);
-      return { contacts: newContacts };
+    setContacts(prevState => {
+      const newContacts = prevState.filter(el => el.name !== evt.target.id);
+      return   newContacts ;
     });  
    }
 
-  handleSubmit = (name='', number='') => {
+  const handleSubmit = (name='', number='') => {
     
    
     const id = nanoid();
     
-    const userExist = this.state.contacts.find(element => element.name === name);
+    const userExist = contacts.find(element => element.name === name);
 
     if (userExist !== undefined) {
         alert(`The ${name} is already in contacts`);
     } else {
         
       
-        this.setState({ contacts: [...this.state.contacts, {id: id, name: name, number: number }] });
+        setContacts( [...contacts, {id: id, name: name, number: number }] ); 
        
     }
  
   }
 
-  getFilterValueOn = (element) => {
+  const getFilterValueOn = (element) => {
     
-   return element.name.toLowerCase().includes(this.state.filter.toLowerCase())
+   return element.name.toLowerCase().includes(filter.toLowerCase())
   }
 
-  componentDidMount(){
+  useEffect(()=>{
     const valueStorage = localStorage.getItem("contacts");
     if (valueStorage !== null) {
-      this.setState({contacts: JSON.parse(valueStorage)});
+      setContacts( JSON.parse(valueStorage));
     }
-  }
+    console.log('mount');
+  },[])
 
-  componentDidUpdate(_,prevState){
-    if (prevState.contacts.length !== this.state.contacts.length) {
-        localStorage.setItem("contacts",JSON.stringify(this.state.contacts));
-    }
-  }
+  useEffect((valueStorage) => {
+   // if (prevState !== contacts.length) {
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+    console.log('edit');
+  // }
+  }, [contacts])
     
-  render() {
+ 
     return (
       <div
         style={{
@@ -80,21 +85,22 @@ export class App extends Component {
           listStyleType: 'none'
         }}
       >
-        <>
-        <h1>Phonebook</h1>
-        <ContactForm  handleSubmit={this.handleSubmit} />
+   
+        <h1>Phonebook </h1>
+        <ContactForm  handleSubmit={handleSubmit} />
         <h2>Contacts</h2>
-        <Filter handleFilter={this.handleFilter} filter={this.state.filter} />
+        <Filter handleFilter={handleFilter} filter={filter} />
         <ul>
-        {this.state.contacts.map(element =>
-          this.getFilterValueOn(element) &&
-          < Contacts key={element.name} element={element} onDelete={this.handleDelete}
+        {contacts.map(element =>
+          getFilterValueOn(element) &&
+          < Contacts key={element.name} element={element} onDelete={handleDelete}
            />)}
         </ul>
-        </>
+      
       </div>
+      
     );
-  }
+
 };
 
 

@@ -1,46 +1,48 @@
 import PropTypes from 'prop-types';
-import { Component } from "react";
+import {  useState } from 'react';
 
-export class ContactForm extends Component {
+export const ContactForm = (props) => {
     
-    state = {
+    const [contact, setContact] = useState({
         name: '',
         number: ''
-    }
+    })
     
-    handleChange = (evt) => {
+    const handleChange = (evt) => {
     
-        const {name,value } = evt.target;
-        this.setState({[name] : value });  
-    }
+        const { name, value } = evt.target;
+        setContact(prev =>( {...prev, [name]: value }))
+    }; 
+        
+    
 
-    onSubmit = (evt) =>{
+    const onSubmit = (evt) =>{
         if (evt !==undefined) {
             evt.preventDefault();
         }
-        const { name, number } = this.state;
-        const { handleSubmit } = this.props;
+        const { name, number } = contact;
+        const { handleSubmit } = props;
         handleSubmit(name,number);
-        this.setState({ name: '' , number: ''});
+        setContact({ name: '' , number: ''});
     }
 
-    render() {
+
         
-        const { name, number } = this.state;
+       
         
         return (
             <>
         
-                <form onSubmit={this.onSubmit}>
+                <form onSubmit={onSubmit}>
                     <div>
                         <label>Name</label>
             
                
-                        <input onChange={this.handleChange}
+                        <input onChange={handleChange}
                   
                             type="text"
                             name="name"
-                            value={name}
+                            value={contact.name}
                             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                             required
@@ -50,11 +52,11 @@ export class ContactForm extends Component {
             
                     <div>
                         <label>Phone</label>
-                        <input onChange={this.handleChange}
+                        <input onChange={handleChange}
                 
                             type="tel"
                             name="number"
-                            value={number}
+                            value={contact.number}
                             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                             required
@@ -66,7 +68,7 @@ export class ContactForm extends Component {
                 </form>
             </>
         )
-    }
+  
 }    
 
 ContactForm.propTypes = {
