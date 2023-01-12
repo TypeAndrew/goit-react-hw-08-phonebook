@@ -22,7 +22,7 @@ export const App = () => {
   const handleFilter= (evt) => {
       
     setFilter(evt.target.value);
-    //this.getFilterValueOn();
+    //this.getFilterValueOn();//
   }
   
   const handleDelete = (evt) => {
