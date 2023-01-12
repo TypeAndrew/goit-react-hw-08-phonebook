@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 
 export const App = () => {
   
-  //state = {
+  ////state = {
   const [contacts, setContacts] = useState(
      [
     { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
