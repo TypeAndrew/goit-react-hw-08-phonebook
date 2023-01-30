@@ -1,17 +1,23 @@
 import PropTypes from 'prop-types';
 import {  useState } from 'react';
-
+import { useSelector, useDispatch  } from "react-redux";
+import { setContact } from 'Redux/actions';
 export const ContactForm = (props) => {
     
-    const [contact, setContact] = useState({
+    //const contact = useSelector(state => state.contact.value);
+    /*const [contact, setContact] = useState({
         name: '',
         number: ''
-    })
-    
+    })*/
+    const dispatch = useDispatch();
+    const contact = useSelector(getContact);
+    //const statusFilter = useSelector(getFilter);
+       
     const handleChange = (evt) => {
     
         const { name, value } = evt.target;
-        setContact(prev =>( {...prev, [name]: value }))
+        //setContact(prev =>( {...prev, [name]: value }))
+        dispatch(setContact({ ...prev, [name]: value }));
     }; 
         
     
@@ -27,9 +33,6 @@ export const ContactForm = (props) => {
     }
 
 
-        
-       
-        
         return (
             <>
         
