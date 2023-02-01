@@ -1,3 +1,3 @@
-export const contact = state => state.contact;
+export const getContact = state => state;
 
 
