@@ -1,7 +1,7 @@
 
 export const setContact = contact => {
   return {
-    type: "contacts/contact",
+    type: "CONTACT",
     payload: contact,
   };
 };
