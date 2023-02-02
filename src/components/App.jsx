@@ -10,25 +10,19 @@ import { setContact, setContacts } from 'Redux/actions';
 
 export const App = () => {
   
-  ////state = {
-  //const [contacts, setContacts] = useState(
-
-  //const [filter, setFilter] = useState('');   
+   
   const contact = useSelector(getContact)
   const dispatch = useDispatch();
   const handleFilter= (evt) => {
      dispatch(setContact({ ...contact, filter: evt.target.value })) 
-    //setFilter(evt.target.value);
-    //this.getFilterValueOn();//
+
   }
   
   const handleDelete = (evt) => {
     
-    //setContacts(prevState => {
-    //const newContacts = contact.contacts.filter(el => el.name !== evt.target.id);
-     // const newContacts = prevState.filter(el => el.name !== evt.target.id);
+    
       dispatch(setContacts( contact.contacts.filter(el => el.name !== evt.target.id))) 
-      //return newContacts;
+      
     };  
    
 
@@ -43,8 +37,6 @@ export const App = () => {
         alert(`The ${name.value} is already in contacts`);
     } else {
         
-      
-        //setContacts( [...contacts, {id: id, name: name, number: number }] ); 
         dispatch(setContacts([...contact.contacts, {id: id, name: name.value, number: number.value }]))
     }
  
@@ -58,8 +50,7 @@ export const App = () => {
   useEffect(()=>{
     const valueStorage = localStorage.getItem("contacts");
     if (valueStorage !== null) {
-     // setContacts( JSON.parse(valueStorage));
-      //dispatch(setContact([...contact.contacts, JSON.parse(valueStorage) ]))
+ 
     }
     console.log('mount');
   },[])
