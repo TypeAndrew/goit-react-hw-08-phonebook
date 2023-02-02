@@ -59,7 +59,7 @@ export const App = () => {
    // if (prevState !== contacts.length) {
     localStorage.setItem("contacts", JSON.stringify(contact.contacts));
     console.log('edit');
-  ////// }
+  // }
   }, [contact.contacts])
     
  
