@@ -5,3 +5,10 @@ export const setContact = contact => {
     payload: contact,
   };
 };
+
+export const setContacts = contacts => {
+  return {
+    type: "CONTACTS",
+    payload: contacts,
+  };
+};
