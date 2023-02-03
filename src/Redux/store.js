@@ -1,35 +1,14 @@
-import { createStore } from "redux";
-import { devToolsEnhancer } from "@redux-devtools/extension";
-
-const initialState = {
-  contacts: [ 
-    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
-    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
-    { id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
-    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
-    ],
-  filter: ""
- // name: "",
- // number: ""
-}
-
-const rootReduser = (state = initialState, action) => {
-  switch(action.type){
-    case "CONTACT":{
-      return { ...state, ...action.payload};
-    }
-    case "CONTACTS":{
-      return { ...state, contacts: action.payload};
-    }
-    default:
-      return state
-    }
-  }
-
+import { configureStore } from "@reduxjs/toolkit";
+//import { contactsReduser, filterReduser  } from "./redusers";
+import { contactsReduser } from "./sliceContacts";
+import { filterReduser } from "./sliceFilter";
 
 // Створюємо розширення стора, щоб додати інструменти розробника
-const enhancer = devToolsEnhancer();
-
-export const store = createStore(rootReduser, enhancer);
+export const store = configureStore({
+  reducer: {
+    contacts: contactsReduser,
+    filter: filterReduser,
+  },
+});
 
 console.log(store.getState())
