@@ -53,12 +53,12 @@ export const App = () => {
     console.log('mount');
   },[])
 
-  useEffect((valueStorage) => {
+  /*useEffect((valueStorage) => {
    // if (prevState !== contacts.length) {
     localStorage.setItem("contacts", JSON.stringify(contacts));
     console.log('edit');
   // }
-  }, [contacts])
+  }, [contacts])*/
     
  
     return (

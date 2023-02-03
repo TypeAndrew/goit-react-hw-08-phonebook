@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const filterInitialState = "b";
+const filterInitialState = "";
 
 const filterSlice = createSlice({
   // Ім'я слайсу
