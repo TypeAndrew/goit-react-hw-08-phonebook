@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
 const filterInitialState = "";
 
 const filterSlice = createSlice({
@@ -11,10 +12,11 @@ const filterSlice = createSlice({
   reducers: {
       setFilter(state, action)
     {
-      state.filter = action.payload;
+        return state = action.payload;
      // console.log(state);
     },
   },
+   
 });
 
 // Генератори екшенів

@@ -6,8 +6,8 @@ import { Filter } from './Filter/Filter';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContact, getFilter } from 'Redux/selectors';
-import { setFilter, setContacts, deleteContacts } from 'Redux/actions';
-
+import {  setContacts, deleteContacts } from 'Redux/sliceContacts';
+import { setFilter } from 'Redux/sliceFilter';
 export const App = () => {
   
    

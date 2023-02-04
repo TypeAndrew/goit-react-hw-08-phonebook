@@ -2,7 +2,7 @@
 
 import { createAction,nanoid } from "@reduxjs/toolkit";
 
-export const setContacts = createAction("CRUD_CONTACTS", text =>{
+export const setContacts = createAction("filter/setFilter", text =>{
   text.id = nanoid();
   return {
     payload: 
