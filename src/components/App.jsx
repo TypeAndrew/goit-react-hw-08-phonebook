@@ -2,8 +2,6 @@
 import { Contacts } from './Contacts/Contacts';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
-//import { nanoid } from 'nanoid'
-//import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContact, getFilter } from 'Redux/selectors';
 import {  setContacts, deleteContacts } from 'Redux/sliceContacts';
@@ -16,7 +14,8 @@ export const App = () => {
   const dispatch = useDispatch();
   
   const handleFilter = (evt) => {
-     dispatch(setFilter(evt.target.value )) 
+     
+    dispatch(setFilter(evt.target.value)) 
 
   }
   
@@ -26,39 +25,18 @@ export const App = () => {
       
   };  
    
-
   const handleSubmit = ( name  ,  number   ) => {
     
-    const userExist = contacts.find(element => element.name === name.value);
-
-    if (userExist !== undefined) {
-        alert(`The ${name.value} is already in contacts`);
-    } else {
-        
-        dispatch(setContacts( { name: name.value, number: number.value }))
-    }
- 
+    dispatch(setContacts( { name: name.value, number: number.value }))
+    
   }
 
   const getFilterValueOn = (element) => {
     
    return element.name.toLowerCase().includes(filter.toLowerCase())
+  
   }
 
-  //useEffect(()=>{
-    //const valueStorage = localStorage.getItem("contacts");
-  //  if (valueStorage !== null) {
- 
-  //  }
-   // console.log('mount');
- // },[])
-
-  /*useEffect((valueStorage) => {
-   // if (prevState !== contacts.length) {
-    localStorage.setItem("contacts", JSON.stringify(contacts));
-    console.log('edit');
-  // }
-  }, [contacts])*/
     
  
     return (

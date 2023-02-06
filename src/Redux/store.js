@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from 'redux'
 import storage from 'redux-persist/lib/storage'
-//import { contactsReduser, filterReduser  } from "./redusers";
 import { contactsReduser } from "./sliceContacts";
 import { filterReduser } from "./sliceFilter";
 import {
@@ -15,16 +14,26 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-//import {logger} from 'redux-logger'
-// Створюємо розширення стора, щоб додати інструменти розробника
 
+// Редюсер слайсу
+export const persistConfig = {
+  key: 'goit',
+  storage,
+  whitelist: ['contacts'],
+  // blacklist: ['search'],
+};
 
+export const rootReducer = combineReducers({
+  contacts: contactsReduser,
+  filter: filterReduser,
+})
 
+ const persistedReduser = persistReducer(persistConfig, rootReducer);
+
+//[...getGetDefaultMiddleware(), logger]
 export const store = configureStore({
-  reducer: {
-    contacts: contactsReduser,
-    filter: filterReduser,
-  },
+  devtools: true,
+  reducer: persistedReduser,
 
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
@@ -35,20 +44,3 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-
-// Редюсер слайсу
-const persistConfig = {
-  key: 'goit',
-  storage,
-
-  // blacklist: ['search'],
-};
-
-const rootReducer = combineReducers({
-  contacts: contactsReduser,
-  filter: filterReduser,
-})
-
-export default persistReducer(persistConfig, rootReducer);
-//console.log(store.getState())
-//[...getGetDefaultMiddleware(), logger]
