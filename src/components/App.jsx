@@ -3,7 +3,7 @@ import { Contacts } from './Contacts/Contacts';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 //import { nanoid } from 'nanoid'
-import { useEffect } from 'react';
+//import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContact, getFilter } from 'Redux/selectors';
 import {  setContacts, deleteContacts } from 'Redux/sliceContacts';
@@ -45,13 +45,13 @@ export const App = () => {
    return element.name.toLowerCase().includes(filter.toLowerCase())
   }
 
-  useEffect(()=>{
-    const valueStorage = localStorage.getItem("contacts");
-    if (valueStorage !== null) {
+  //useEffect(()=>{
+    //const valueStorage = localStorage.getItem("contacts");
+  //  if (valueStorage !== null) {
  
-    }
-    console.log('mount');
-  },[])
+  //  }
+   // console.log('mount');
+ // },[])
 
   /*useEffect((valueStorage) => {
    // if (prevState !== contacts.length) {
