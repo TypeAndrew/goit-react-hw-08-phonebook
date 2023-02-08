@@ -3,16 +3,23 @@ import { Contacts } from './Contacts/Contacts';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContact, getFilter } from 'Redux/selectors';
+import { getContacts, getFilter } from 'Redux/selectors';
 import {  setContacts, deleteContacts } from 'Redux/sliceContacts';
 import { setFilter } from 'Redux/sliceFilter';
+import { getContactsThunk } from 'Redux/thunkContacts';
+import { useEffect } from 'react';
 export const App = () => {
   
    
-  const contacts = useSelector(getContact)
+  const contacts = useSelector(getContacts)
   const filter = useSelector(getFilter)
   const dispatch = useDispatch();
   
+  useEffect(() => {
+    dispatch(getContactsThunk());
+  }, [dispatch]);
+
+
   const handleFilter = (evt) => {
      
     dispatch(setFilter(evt.target.value)) 
@@ -58,7 +65,7 @@ export const App = () => {
         <h2>Contacts</h2>
         <Filter handleFilter={handleFilter} filter={filter} />
         <ul>
-        {contacts.map(element =>
+        {contacts?.map(element =>
           getFilterValueOn(element) &&
           < Contacts key={element.name} element={element} onDelete={handleDelete}
            />)}

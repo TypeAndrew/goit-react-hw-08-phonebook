@@ -4,19 +4,18 @@ import { createSlice } from "@reduxjs/toolkit";
 const filterInitialState = "";
 
 const filterSlice = createSlice({
-  // Ім'я слайсу
-  name: "filter",
-  // Початковий стан редюсера слайсу
-  initialState: filterInitialState,
-  // Об'єкт редюсерів
-  reducers: {
-      setFilter(state, action)
-    {
-        return state = action.payload;
-     // console.log(state);
+    // Ім'я слайсу
+    name: "filter",
+    // Початковий стан редюсера слайсу
+    initialState: filterInitialState,
+    // Об'єкт редюсерів
+    reducers: {
+        setFilter(state, action) {
+            return state = action.payload;
+            // console.log(state);
+        },
     },
-  },
-   
+
 });
 
 // Генератори екшенів

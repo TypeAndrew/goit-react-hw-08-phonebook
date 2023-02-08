@@ -6,6 +6,7 @@ export const ContactForm = (props) => {
     
     const contact = useSelector(getContact);     
 
+    
     const onSubmit = (evt) =>{
         if (evt !==undefined) {
             evt.preventDefault();
