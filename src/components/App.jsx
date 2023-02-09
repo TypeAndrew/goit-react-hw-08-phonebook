@@ -28,7 +28,7 @@ export const App = () => {
   
   const handleDelete = (evt) => {
     
-    dispatch(deleteContactsThunk( evt.target.id )) 
+    dispatch(deleteContactsThunk({ id:evt.target.id } )) 
       
   };  
    
@@ -67,7 +67,7 @@ export const App = () => {
         <ul>
         {contacts?.map(element =>
           getFilterValueOn(element) &&
-          < Contacts key={element.name} element={element} onDelete={handleDelete}
+          < Contacts key={element.id} element={element} onDelete={handleDelete}
            />)}
         </ul>
       

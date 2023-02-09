@@ -7,7 +7,7 @@ import { filterReduser } from "./sliceFilter";
 export const rootReducer = combineReducers({
     phonebook: contactsReduser,
     filter: filterReduser,
-    contscts: contactsDeleteReduser,
+   // contscts: contactsDeleteReduser,
 })
 
 //[...getGetDefaultMiddleware(), logger]
