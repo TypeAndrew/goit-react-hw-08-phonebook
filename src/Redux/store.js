@@ -1,12 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from 'redux'
-import { contactsReduser } from "./sliceContacts";
+import { contactsReduser, contactsDeleteReduser } from "./sliceContacts";
 import { filterReduser } from "./sliceFilter";
 
 // Редюсер слайсу
 export const rootReducer = combineReducers({
     phonebook: contactsReduser,
     filter: filterReduser,
+    contscts: contactsDeleteReduser,
 })
 
 //[...getGetDefaultMiddleware(), logger]

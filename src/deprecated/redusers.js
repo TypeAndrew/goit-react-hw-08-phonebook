@@ -1,28 +1,24 @@
-import { setFilter, setContacts,  deleteContacts} from './actions';
+import { setFilter, setContacts, deleteContacts } from './actions';
 import { createReducer } from '@reduxjs/toolkit';
 
-const contactsInitialState = 
-  [
-    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
- ]
-  
+const contactsInitialState = [
+
+]
+
 
 
 const filterInitialState = "";
 
 export const filterReduser = createReducer(filterInitialState, {
-  
-  [setFilter]: (state, {payload}) => { return payload; },
- 
+
+    [setFilter]: (state, { payload }) => { return payload; },
+
 });
 
-export const contactsReduser = createReducer(contactsInitialState,  {
- 
-  [setContacts]: (state, {payload}) => { state.push(payload); },
-  [deleteContacts]: (state, {payload}) => { return [...state.filter(el => el.name !== payload)]; },
+export const contactsReduser = createReducer(contactsInitialState, {
+
+    [setContacts]: (state, { payload }) => { state.push(payload); },
+    [deleteContacts]: (state, { payload }) => { return [...state.filter(el => el.name !== payload)]; },
 
 });
 

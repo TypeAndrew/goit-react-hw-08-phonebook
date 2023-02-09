@@ -4,9 +4,9 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts, getFilter } from 'Redux/selectors';
-import {  setContacts, deleteContacts } from 'Redux/sliceContacts';
+//import {  deleteContacts } from 'Redux/sliceContacts';
 import { setFilter } from 'Redux/sliceFilter';
-import { getContactsThunk } from 'Redux/thunkContacts';
+import { getContactsThunk, putContactsThunk, deleteContactsThunk } from 'Redux/thunkContacts';
 import { useEffect } from 'react';
 export const App = () => {
   
@@ -28,13 +28,13 @@ export const App = () => {
   
   const handleDelete = (evt) => {
     
-    dispatch(deleteContacts( evt.target.id )) 
+    dispatch(deleteContactsThunk( evt.target.id )) 
       
   };  
    
   const handleSubmit = ( name  ,  number   ) => {
     
-    dispatch(setContacts( { name: name.value, number: number.value }))
+    dispatch(putContactsThunk({ name: name.value, number: number.value }))
     
   }
 
@@ -51,7 +51,7 @@ export const App = () => {
         style={{
           height: '100vh',
           display: 'flex',
-          justifyContent: 'center',
+         // justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'column',
           fontSize: 40,

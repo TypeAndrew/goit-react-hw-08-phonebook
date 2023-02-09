@@ -1,5 +1,5 @@
 import { createSlice, nanoid, current } from "@reduxjs/toolkit";
-import { getContactsThunk } from "./thunkContacts";
+import { getContactsThunk, putContactsThunk, deleteContactsThunk } from "./thunkContacts";
 
 const contactsInitialState = {
 
@@ -50,11 +50,34 @@ const contactsSlice = createSlice({
             state.contacts = payload;
         }).addCase(getContactsThunk.rejected, state => {
             state.error = true;
+        }).addCase(putContactsThunk, (state, { payload }) => {
+            state.isLoading = true;
         });
+
+
+
     },
+
 });
 
-// Генератори екшенів
+export const contactsSliceDelete = createSlice({
+    // Ім'я слайсу
+    name: "contacts",
+    // Початковий стан редюсера слайсу
+    initialState: contactsInitialState,
+    // Об'єкт редюсерів
+    // Генератори екшенів 
+    extraReducers: builder => {
+
+        builder.addCase(deleteContactsThunk.pending, (state, { payload }) => {
+            state.isLoading = true;
+        });
+
+    },
+
+});
+
 export const { setContacts, deleteContacts } = contactsSlice.actions;
 
 export const contactsReduser = contactsSlice.reducer;
+export const contactsDeleteReduser = contactsSliceDelete.reducer;

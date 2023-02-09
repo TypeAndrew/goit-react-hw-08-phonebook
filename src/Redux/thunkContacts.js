@@ -12,15 +12,55 @@ export const getContactsThunk = createAsyncThunk(
                 },
             );
 
-            //   if (!data.isAdmin) {
-            //     return thunkAPI.fulfillWithValue();
-            //   }
+            return data;
+        } catch (e) {
+            console.log('error');
+            // ...
+            return thunkAPI.rejectWithValue();
+        }
+    },
+);
 
-            // console.log(thunkAPI.getState());
-            // if (data.isAdmin) {
-            //   thunkAPI.dispatch({ type: 'USER_ADMIN' });
-            // }
-            //   throw new Error();
+export const putContactsThunk = createAsyncThunk(
+    'contacts',
+    async(params, thunkAPI) => {
+
+        const { name, number } = params;
+        try {
+            console.log(thunkAPI);
+            const { data } = await axios.post(
+                'https://63e360e0c919fe386c052176.mockapi.io/contacts', {
+
+                    name,
+                    number,
+
+                },
+            );
+
+            return data;
+        } catch (e) {
+            console.log('error');
+            // ...
+            return thunkAPI.rejectWithValue();
+        }
+    },
+);
+
+export const deleteContactsThunk = createAsyncThunk(
+    'contacts',
+    async(params, thunkAPI) => {
+
+        const { id } = params;
+        try {
+            console.log(thunkAPI);
+            const { data } = await axios.delete(
+                'https://63e360e0c919fe386c052176.mockapi.io/contacts', {
+
+                    id,
+
+                },
+            );
+
             return data;
         } catch (e) {
             console.log('error');
