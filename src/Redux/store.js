@@ -5,7 +5,7 @@ import { filterReduser } from "./sliceFilter";
 
 // Редюсер слайсу
 export const rootReducer = combineReducers({
-    phonebook: contactsReduser,contactsDeleteReduser,contactsAddeReduser,
+    phonebook: ycontactsAddeReduser,
     filter: filterReduser,
  
 })

@@ -67,7 +67,7 @@ export const contactsSliceDelete = createSlice({
     extraReducers: builder => {
 
         builder.addCase(putContactsThunk.pending, (state, { payload }) => {
-            state.isLoading = true;
+            state.contacts = payload;
         });
 
     },
@@ -84,7 +84,7 @@ export const contactsSliceAdd = createSlice({
     extraReducers: builder => {
 
         builder.addCase(deleteContactsThunk.fulfilled, (state, { payload }) => {
-            state.isLoading = true;
+             state.contacts = payload;
         });
 
     },
