@@ -29,7 +29,7 @@ export const putContactsThunk = createAsyncThunk(
        // const id = name;
         try {
             console.log(thunkAPI);
-            const { data } = await axios.post(
+            await axios.post(
                 'https://63e360e0c919fe386c052176.mockapi.io/contacts', {
                    
                     name,
@@ -38,7 +38,11 @@ export const putContactsThunk = createAsyncThunk(
 
                 },
             );
-
+            const { data } = await axios.get(
+                'https://63e360e0c919fe386c052176.mockapi.io/contacts', {
+                    
+                },
+            );
             return data;
         } catch (e) {
             console.log('error');
@@ -56,15 +60,20 @@ export const deleteContactsThunk = createAsyncThunk(
         const { id } = params;
         try {
             console.log(thunkAPI);
-            const { data } = await axios.delete(
+            await axios.delete(
                 `https://63e360e0c919fe386c052176.mockapi.io/phonebook/contacts/${id}`, {
                     id,
                
 
                 },
             );
-
+             const { data } = await axios.get(
+                'https://63e360e0c919fe386c052176.mockapi.io/contacts', {
+                    
+                },
+            );
             return data;
+
         } catch (e) {
             console.log('error');
             // ...

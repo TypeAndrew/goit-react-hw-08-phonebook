@@ -48,7 +48,7 @@ const contactsSlice = createSlice({
         }).addCase(getContactsThunk.rejected, state => {
             state.error = true;
         }).addCase(putContactsThunk, (state, { payload }) => {
-            state.isLoading = true;
+            state.contacts = payload;
         });
 
 
@@ -66,7 +66,24 @@ export const contactsSliceDelete = createSlice({
     // Генератори екшенів 
     extraReducers: builder => {
 
-        builder.addCase(deleteContactsThunk.pending, (state, { payload }) => {
+        builder.addCase(putContactsThunk.pending, (state, { payload }) => {
+            state.isLoading = true;
+        });
+
+    },
+
+});
+
+export const contactsSliceAdd = createSlice({
+    // Ім'я слайсу
+    name: "phonebook",
+    // Початковий стан редюсера слайсу
+    initialState: contactsInitialState,
+    // Об'єкт редюсерів
+    // Генератори екшенів 
+    extraReducers: builder => {
+
+        builder.addCase(deleteContactsThunk.fulfilled, (state, { payload }) => {
             state.isLoading = true;
         });
 
@@ -78,3 +95,4 @@ export const { setContacts, deleteContacts } = contactsSlice.actions;
 
 export const contactsReduser = contactsSlice.reducer;
 export const contactsDeleteReduser = contactsSliceDelete.reducer;
+export const contactsAddeReduser = contactsSliceDelete.reducer;

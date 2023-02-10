@@ -35,7 +35,7 @@ export const App = () => {
   const handleSubmit = ( name  ,  number   ) => {
     
     dispatch(putContactsThunk({ name: name.value, number: number.value }))
-    
+    dispatch(getContactsThunk());
   }
 
   const getFilterValueOn = (element) => {
