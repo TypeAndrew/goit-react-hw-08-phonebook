@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from 'redux'
-import { contactsReduser, contactsDeleteReduser,contactsAddeReduser } from "./sliceContacts";
+import { contactsReduser } from "./sliceContacts";
 import { filterReduser } from "./sliceFilter";
 
 // Редюсер слайсу
 export const rootReducer = combineReducers({
-    phonebook: ycontactsAddeReduser,
+    phonebook: contactsReduser,
     filter: filterReduser,
  
 })
@@ -15,10 +15,12 @@ export const store = configureStore({
     devtools: true,
     reducer: rootReducer,
 
-    /*middleware: getDefaultMiddleware =>
-      getDefaultMiddleware({
-        serializableCheck: {
-          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-        },
-      }),*/
+  
 });
+
+/*export const store = configureStore({
+  reducer: {
+    phonebook: contactsReduser,
+    filter: filterReduser,
+  },
+});*/

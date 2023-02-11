@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const getContactsThunk = createAsyncThunk(
-    'contacts',
+    'contacts/fetchAll',
     async(params, thunkAPI) => {
         try {
             console.log(thunkAPI);
@@ -11,7 +11,7 @@ export const getContactsThunk = createAsyncThunk(
                     params,
                 },
             );
-
+            
             return data;
         } catch (e) {
             console.log('error');
@@ -21,15 +21,15 @@ export const getContactsThunk = createAsyncThunk(
     },
 );
 
-export const putContactsThunk = createAsyncThunk(
-    'contacts',
+export const postContactsThunk = createAsyncThunk(
+    'contacts/addContact',
     async(params, thunkAPI) => {
 
         const { name, number ,id} = params;
        // const id = name;
         try {
             console.log(thunkAPI);
-            await axios.post(
+            const { data } =  await axios.post(
                 'https://63e360e0c919fe386c052176.mockapi.io/contacts', {
                    
                     name,
@@ -38,12 +38,8 @@ export const putContactsThunk = createAsyncThunk(
 
                 },
             );
-            const { data } = await axios.get(
-                'https://63e360e0c919fe386c052176.mockapi.io/contacts', {
-                    
-                },
-            );
-            return data;
+            
+           return data; 
         } catch (e) {
             console.log('error');
             // ...
@@ -53,27 +49,21 @@ export const putContactsThunk = createAsyncThunk(
 );
 
 export const deleteContactsThunk = createAsyncThunk(
-    'contacts',
+    'contacts/deleteContact',
     async(params, thunkAPI) => {
 
 
         const { id } = params;
         try {
             console.log(thunkAPI);
-            await axios.delete(
+            const { data } = await axios.delete(
                 `https://63e360e0c919fe386c052176.mockapi.io/phonebook/contacts/${id}`, {
                     id,
                
 
                 },
             );
-             const { data } = await axios.get(
-                'https://63e360e0c919fe386c052176.mockapi.io/contacts', {
-                    
-                },
-            );
-            return data;
-
+                return data; 
         } catch (e) {
             console.log('error');
             // ...

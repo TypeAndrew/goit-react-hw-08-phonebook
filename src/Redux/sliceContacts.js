@@ -1,5 +1,5 @@
 import { createSlice, nanoid, current } from "@reduxjs/toolkit";
-import { getContactsThunk, putContactsThunk, deleteContactsThunk } from "./thunkContacts";
+import { getContactsThunk, postContactsThunk, deleteContactsThunk } from "./thunkContacts";
 
 const contactsInitialState = {
 
@@ -9,6 +9,11 @@ const contactsInitialState = {
     isLoading: false,
     error: null,
 };
+
+const handlePending = state => {
+  state.isLoading = true;
+};
+
 
 const contactsSlice = createSlice({
     // Ім'я слайсу
@@ -40,59 +45,36 @@ const contactsSlice = createSlice({
             };
         },
     },
-    extraReducers: builder => {
-        builder.addCase(getContactsThunk.pending, state => {
-            state.isLoading = true;
-        }).addCase(getContactsThunk.fulfilled, (state, { payload }) => {
-            state.contacts = payload;
-        }).addCase(getContactsThunk.rejected, state => {
-            state.error = true;
-        }).addCase(putContactsThunk, (state, { payload }) => {
-            state.contacts = payload;
-        });
-
-
-
+    extraReducers: {
+    [deleteContactsThunk.fulfilled]:handlePending,
+    [postContactsThunk.fulfilled]:handlePending,
+    [getContactsThunk.fulfilled](state, {payload}) {
+        state.isLoading = false;
+        state.error = null;
+        state.contacts = payload;
     },
+    [postContactsThunk.fulfilled](state, {payload}) {
+        state.isLoading = false;
+        state.error = null;
+        const userExist = state.contacts.find(element => element.name === payload.name);
 
+            if (userExist !== undefined) {
+                alert(`The ${payload.name} is already in contacts`);
+            } else {
+                state.contacts.push(payload);
+            }
+    },
+    [deleteContactsThunk.fulfilled](state, {payload}) {
+        state.isLoading = false;
+        state.error = null;
+        console.log(current(state))
+        return { contacts: state.contacts.filter(el => el.id !== payload.id) } ;
+    },
+    },
 });
 
-export const contactsSliceDelete = createSlice({
-    // Ім'я слайсу
-    name: "phonebook",
-    // Початковий стан редюсера слайсу
-    initialState: contactsInitialState,
-    // Об'єкт редюсерів
-    // Генератори екшенів 
-    extraReducers: builder => {
+//
 
-        builder.addCase(putContactsThunk.pending, (state, { payload }) => {
-            state.contacts = payload;
-        });
-
-    },
-
-});
-
-export const contactsSliceAdd = createSlice({
-    // Ім'я слайсу
-    name: "phonebook",
-    // Початковий стан редюсера слайсу
-    initialState: contactsInitialState,
-    // Об'єкт редюсерів
-    // Генератори екшенів 
-    extraReducers: builder => {
-
-        builder.addCase(deleteContactsThunk.fulfilled, (state, { payload }) => {
-             state.contacts = payload;
-        });
-
-    },
-
-});
-
-export const { setContacts, deleteContacts } = contactsSlice.actions;
+//export const { setContacts, deleteContacts } = contactsSlice.actions;
 
 export const contactsReduser = contactsSlice.reducer;
-export const contactsDeleteReduser = contactsSliceDelete.reducer;
-export const contactsAddeReduser = contactsSliceDelete.reducer;

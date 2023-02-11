@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getContacts, getFilter } from 'Redux/selectors';
 //import {  deleteContacts } from 'Redux/sliceContacts';
 import { setFilter } from 'Redux/sliceFilter';
-import { getContactsThunk, putContactsThunk, deleteContactsThunk } from 'Redux/thunkContacts';
-import { useEffect } from 'react';
+import { getContactsThunk, postContactsThunk, deleteContactsThunk } from 'Redux/thunkContacts';
+import { useCallback, useEffect } from 'react';
 export const App = () => {
   
    
@@ -26,21 +26,26 @@ export const App = () => {
 
   }
   
-  const handleDelete = (evt) => {
+  const handleDelete = useCallback((evt) => {
     
     dispatch(deleteContactsThunk({ id:evt.target.id } )) 
-      
-  };  
-   
-  const handleSubmit = ( name  ,  number   ) => {
+     dispatch(getContactsThunk());
     
-    dispatch(putContactsThunk({ name: name.value, number: number.value }))
-    dispatch(getContactsThunk());
-  }
+  },[dispatch]);  
+   
+  const handleSubmit = useCallback(( name  ,  number   ) => {
+    
+    dispatch(postContactsThunk({ name: name.value, number: number.value }))
+    
+     
+  } ,[dispatch])
 
   const getFilterValueOn = (element) => {
-    
-   return element.name.toLowerCase().includes(filter.toLowerCase())
+    console.log(element);
+  
+      return element.name.toLowerCase().includes(filter.toLowerCase())
+      
+ 
   
   }
 
