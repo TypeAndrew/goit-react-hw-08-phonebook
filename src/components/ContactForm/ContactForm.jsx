@@ -10,10 +10,9 @@ export const ContactForm = () => {
     
     const handleSubmit = useCallback((name, number) => {
     
-    dispatch(postContactsThunk({ name: name.value, number: number.value }))
+        dispatch(postContactsThunk({ name: name.value, number: number.value }))
     
-     
-    }, [dispatch])
+     }, [dispatch])
     
     const contact = useSelector(getContact);     
 

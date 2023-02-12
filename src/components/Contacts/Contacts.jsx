@@ -2,14 +2,17 @@ import PropTypes from 'prop-types';
 import { useCallback, useEffect} from 'react';
 import { useSelector,useDispatch  } from 'react-redux';
 import { getContactsThunk, deleteContactsThunk } from 'Redux/thunkContacts';
-import { getFilter, getContacts } from 'Redux/selectors';
+import {  selectFilteredContacts } from 'Redux/selectors';
+
 
 export function Contacts()  {
 
   const dispatch = useDispatch();
-  const filter = useSelector(getFilter);
-  const contacts = useSelector(getContacts);
-   
+ 
+  const contacts = useSelector(selectFilteredContacts);
+  
+  
+
   useEffect(() => {
     dispatch(getContactsThunk());
   }, [dispatch]);
@@ -19,16 +22,15 @@ export function Contacts()  {
     dispatch(deleteContactsThunk({ id:evt.target.id } )) 
         
   }, [dispatch]);  
-      
-  const getFilterValueOn = (element) => {
-  console.log(element);
-      
-    return element.name.toLowerCase().includes(filter.toLowerCase())
-  }
+    
+  //replace funcion on selector
+  /*const getFilterValueOn = (element) => {
+      return element.name.toLowerCase().includes(filter.toLowerCase())
+  }*/
   
   return (
     contacts.map(element => 
-    getFilterValueOn(element) &&
+   // getFilterValueOn(element) && replace funcion on selector
     <li key={element.id}><div>{element.name}</div><div> {element.number}</div>
     <button onClick={handleDelete} id={element.id} type="button" >delete </button></li>
     )
