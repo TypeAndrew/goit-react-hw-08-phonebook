@@ -1,8 +1,20 @@
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilter } from 'Redux/sliceFilter';
+import { getFilter } from 'Redux/selectors';
 
-export function Filter(props)  {
-    const { handleFilter, filter } = props; 
-    
+export function Filter()  {
+   
+  const dispatch = useDispatch();
+  const filter = useSelector(getFilter);  
+  
+  const handleFilter = (evt) => {
+     
+    dispatch(setFilter(evt.target.value)) 
+
+  }
+  
+  
     return (
       <label > Filter
           <input onChange={handleFilter}

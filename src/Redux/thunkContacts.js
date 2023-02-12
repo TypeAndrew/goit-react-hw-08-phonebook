@@ -5,7 +5,7 @@ export const getContactsThunk = createAsyncThunk(
     'contacts/fetchAll',
     async(params, thunkAPI) => {
         try {
-            console.log(thunkAPI);
+    
             const { data } = await axios.get(
                 'https://63e360e0c919fe386c052176.mockapi.io/contacts/', {
                     params,
@@ -14,7 +14,7 @@ export const getContactsThunk = createAsyncThunk(
             
             return data;
         } catch (e) {
-            console.log('error');
+ 
             // ...
             return thunkAPI.rejectWithValue();
         }
@@ -28,7 +28,7 @@ export const postContactsThunk = createAsyncThunk(
         const { name, number ,id} = params;
        // const id = name;
         try {
-            console.log(thunkAPI);
+
             const { data } =  await axios.post(
                 'https://63e360e0c919fe386c052176.mockapi.io/contacts', {
                    
@@ -41,7 +41,7 @@ export const postContactsThunk = createAsyncThunk(
             
            return data; 
         } catch (e) {
-            console.log('error');
+
             // ...
             return thunkAPI.rejectWithValue();
         }
@@ -55,7 +55,7 @@ export const deleteContactsThunk = createAsyncThunk(
 
         const { id } = params;
         try {
-            console.log(thunkAPI);
+ 
             const { data } = await axios.delete(
                 `https://63e360e0c919fe386c052176.mockapi.io/phonebook/contacts/${id}`, {
                     id,
@@ -65,7 +65,7 @@ export const deleteContactsThunk = createAsyncThunk(
             );
                 return data; 
         } catch (e) {
-            console.log('error');
+           
             // ...
             return thunkAPI.rejectWithValue();
         }

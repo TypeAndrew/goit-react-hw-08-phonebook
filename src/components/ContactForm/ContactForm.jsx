@@ -1,8 +1,19 @@
 import PropTypes from 'prop-types';
-import { useSelector  } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useCallback } from 'react';
 import { getContact } from '../../Redux/selectors';
-export const ContactForm = (props) => {
+import { postContactsThunk } from 'Redux/thunkContacts';
+
+export const ContactForm = () => {
     
+    const dispatch = useDispatch();
+    
+    const handleSubmit = useCallback((name, number) => {
+    
+    dispatch(postContactsThunk({ name: name.value, number: number.value }))
+    
+     
+    }, [dispatch])
     
     const contact = useSelector(getContact);     
 
@@ -12,7 +23,7 @@ export const ContactForm = (props) => {
             evt.preventDefault();
         }
         const { name, number } = evt.target;
-        const { handleSubmit } = props;
+        
         handleSubmit(name,number);
     }
 
