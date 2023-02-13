@@ -1,4 +1,4 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createSlice  } from "@reduxjs/toolkit";
 import { getContactsThunk, postContactsThunk, deleteContactsThunk } from "./thunkContacts";
 
 const contactsInitialState = {
@@ -21,7 +21,8 @@ const contactsSlice = createSlice({
     // Початковий стан редюсера слайсу
     initialState: contactsInitialState,
     // Об'єкт редюсерів
-    reducers: {
+    //old version when redusers not middleware, related with actions 
+    /*reducers: {
         setContacts(state, { payload }) {
             const userExist = state.contacts.find(element => element.name === payload.name);
 
@@ -38,13 +39,13 @@ const contactsSlice = createSlice({
         prepare(text) {
             return {
                 payload: {
-                    text,
+                    text,y
                     id: nanoid(),
 
                 },
             };
         },
-    },
+    },*/
     extraReducers: 
         builder => {
         builder.addCase(getContactsThunk.pending, state => {
@@ -69,8 +70,8 @@ const contactsSlice = createSlice({
         }).addCase(deleteContactsThunk.fulfilled, (state, { payload }) => {
             state.isLoading = false;
             state.error = null;
-        
-            return { contacts: state.contacts.filter(el => el.id !== payload.id) } ;
+  
+            state.contacts = state.contacts.filter(el => el.id !== payload.id)  ;
         });
         
         },
