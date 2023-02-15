@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import { useCallback, useEffect} from 'react';
 import { useSelector,useDispatch  } from 'react-redux';
-import { getContactsThunk, deleteContactsThunk } from 'Redux/thunkContacts';
-import {  selectFilteredContacts } from 'Redux/selectors';
-
+import { getContactsThunk, deleteContactsThunk } from 'Redux/contacts/thunkContacts';
+import {  selectFilteredContacts } from 'Redux/contacts/selectors';
 
 export function Contacts()  {
 
