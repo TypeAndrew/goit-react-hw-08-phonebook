@@ -1,14 +1,14 @@
 
-import { Contacts } from './Contacts/Contacts';
-import { ContactForm } from './ContactForm/ContactForm';
-import { Filter } from './Filter/Filter';
+
 import { Layout } from './Layout/Layout';
 import { lazy, Suspense } from 'react';
 
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 const JoinPage = lazy(() => import('../pages/JonPage/JoinPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+const ContactsPage = lazy(() => import('../pages/ContactsPage/ContactsPage'));
 
 export const App = () => {
   
@@ -20,27 +20,24 @@ export const App = () => {
          // justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'column',
-          fontSize: 40,
+          fontSize: 30,
           color: '#010101',
-          listStyleType: 'none'
+          listStyleType: 'none',
+          //padding: '10px 10px',
         }}
     >
       <BrowserRouter basename="goit-react-hw-08-phonebook">
         <Layout>
           <Suspense fallback={<p>Loading...</p>}>
             <Routes>
-              <Route index element={<Navigate to="/" />} />
-              <Route path="" element={<HomePage />} />
+              <Route index element={<Navigate to="/home" />} />
+              <Route path="/home" element={<HomePage />} />
               <Route path="/join" element={<JoinPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/contacts" element={<ContactsPage/>} />
             </Routes>
             
-            <h1>Phonebook </h1>
-            <ContactForm   />
-            <h2>Contacts</h2>
-            <Filter />
-            <ul>
-            < Contacts />
-            </ul>
+           
 
           </Suspense>
         </Layout>

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+//import { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -16,37 +16,27 @@ export const Navigation = () => {
   const dispatch = useDispatch();
 
   const token = useSelector(selectAuthToken);
-  const profile = useSelector(state => state.profile.data);
-
-  useEffect(() => {
+ // const profile = useSelector(state => state.profile.data);
+   // const profile = false;
+  /*useEffect(() => {
     // if (token) {
-    //dispatch(getProfileThunk());
+    dispatch(getProfileThunk());
     // }
-  }, [token, dispatch]);
+  }, [token, dispatch]);*/
 
   return (
     <div className="d-flex flex-column justify-content-between h-100">
       <div className="d-flex flex-column justify-content-between">
         {!token && <h2 className="h3 mb-4">Please log in!</h2>}
 
-        {token && profile && (
-          <>
-            <h2 className="h5 mb-4">Welcome back!</h2>
-            <small className="d-block">{profile.first_name} {profile.last_name}</small>
-            <small>{profile.email}</small>
-            <br />
-            <br />
-          </>
-        )}
+   
 
-        <NavLink to="" className={getActiveClassName}>
-          Home page
-        </NavLink>
+    
 
         {token ? (
           <>
-            <NavLink to="posts" end className={getActiveClassName}>
-              Posts list
+            <NavLink to="contacts" end className={getActiveClassName}>
+              Contacts list
             </NavLink>
 
         
@@ -69,6 +59,10 @@ export const Navigation = () => {
             <NavLink to="join" className={getActiveClassName}>
               Join
             </NavLink>
+            
+            <NavLink to="contacts" className={getActiveClassName}>
+              Contacts
+            </NavLink>              
           </>
         )}
       </div>

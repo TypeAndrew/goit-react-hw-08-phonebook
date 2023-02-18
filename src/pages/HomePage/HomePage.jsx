@@ -2,8 +2,8 @@
 
 const HomePage = () => {
   //const [trigger, { isLoading, data }] = useLazyGetPostsQuery();
-    const [trigger, { isLoading, data }] = null;
-  console.log(isLoading, data);
+  //const [trigger, { isLoading, data }] = null;
+  //console.log(isLoading, data);
 
   return (
     <>
@@ -15,7 +15,7 @@ const HomePage = () => {
             like the one in previous versions of Bootstrap.
           </p>
           <button
-            onClick={() => trigger({ page: 1 })}
+            //onClick={() => trigger({ page: 1 })}
             className="btn btn-primary btn-lg"
             type="button"
           >

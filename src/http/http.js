@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 export const publicApi = axios.create({
-  baseURL: 'https://taupe-croissant-c4162a.netlify.app/api',
+  baseURL: 'https://connections-api.herokuapp.com/users/',
 });
 
 export const privateApi = axios.create({
-  baseURL: 'https://taupe-croissant-c4162a.netlify.app/api',
+  baseURL: 'https://connections-api.herokuapp.com/',
 });
 
 export const token = {

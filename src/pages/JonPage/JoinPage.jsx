@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, dispatch, useEffect } from 'react';
+import { authLoginThunk } from 'Redux/auth/auth.thunk';
 
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -11,6 +12,8 @@ const initialState = {
   first_name: '',
   last_name: '',
   password: '',
+  name:'',
+  authType: 'signUp'
 };
 
 const JoinPage = () => {
@@ -19,7 +22,13 @@ const JoinPage = () => {
 
   const [isPass, setIsPass] = useState(true);
 
-  const handleChange = event => {
+useEffect(()=>
+{  
+    console.log('jfhjfjf')
+    setValues(prev => ({ ...prev, name: values.first_name+ ' '+ values.last_name }));
+    },[values.first_name, values.last_name])
+
+const handleChange = event => {
     const { value, name } = event.target;
     setValues(prev => ({ ...prev, [name]: value }));
   };
@@ -29,8 +38,8 @@ const JoinPage = () => {
 
     try {
       setIsLoading(true);
-      await publicApi.post('/users/create', values);
-      // dispatch(authLoginThunk(...values));
+      await publicApi.post('/signUp', values);
+      dispatch(authLoginThunk(...values));
       setIsLoading(false);
       toast.success('Success!');
     } catch (e) {
