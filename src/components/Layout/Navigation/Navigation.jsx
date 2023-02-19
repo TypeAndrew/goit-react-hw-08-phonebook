@@ -39,15 +39,6 @@ export const Navigation = () => {
               Contacts list
             </NavLink>
 
-        
-            <NavLink to="new-post" className={getActiveClassName}>
-              Create new post
-            </NavLink>
-
-            <NavLink to="exercises" className={getActiveClassName}>
-              React exercises
-            </NavLink>
-
             <Button className="btn-danger mt-5" onClick={() => dispatch(logoutAction())}>Log Out</Button>
           </>
         ) : (
@@ -59,10 +50,7 @@ export const Navigation = () => {
             <NavLink to="join" className={getActiveClassName}>
               Join
             </NavLink>
-            
-            <NavLink to="contacts" className={getActiveClassName}>
-              Contacts
-            </NavLink>              
+                        
           </>
         )}
       </div>

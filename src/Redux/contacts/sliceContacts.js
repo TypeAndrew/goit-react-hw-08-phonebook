@@ -28,19 +28,16 @@ const contactsSlice = createSlice({
             state.error = null;
             state.contacts = payload;
             console.log('fullfiled')
-        }).addCase(getContactsThunk.rejected, state => {
+        }).addCase(getContactsThunk.rejected, (state, { payload }) => {
             state.error = true;
             console.log(current(state))
+            console.log(payload)
         }).addCase(postContactsThunk.fulfilled, (state, { payload }) => {
             state.isLoading = false;
             state.error = null;
-            const userExist = state.contacts.find(element => element.name === payload.name);
+           
 
-            if (userExist !== undefined) {
-                alert(`The ${payload.name} is already in contacts`);
-            } else {
-                state.contacts.push(payload);
-            }
+            
         }).addCase(deleteContactsThunk.fulfilled, (state, { payload }) => {
             state.isLoading = false;
             state.error = null;
