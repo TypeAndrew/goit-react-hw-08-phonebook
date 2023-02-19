@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from "react-redux";
 import { useCallback } from 'react';
-import { getContact } from '../../Redux/contacts/selectors';
-import { postContactsThunk } from 'Redux/contacts/thunkContacts';
+import { getContact } from '../../Redux/contacts/contacts.selectors';
+import { postContactsThunk } from 'Redux/contacts/contacts.thunk';
 
 export const ContactForm = () => {
     

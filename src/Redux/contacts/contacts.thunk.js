@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { selectAuthToken } from 'Redux/auth/auth.selector';
-import { getContacts } from 'Redux/contacts/selectors';
+import { getContacts } from 'Redux/contacts/contacts.selectors';
 import { privateApi, token } from '../../http/http';
 
 
