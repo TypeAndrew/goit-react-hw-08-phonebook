@@ -1,4 +1,4 @@
-import { createSlice, current  } from "@reduxjs/toolkit";
+import { createSlice  } from "@reduxjs/toolkit";
 import { getContactsThunk, postContactsThunk, deleteContactsThunk } from "./thunkContacts";
 
 const contactsInitialState = {
@@ -22,20 +22,19 @@ const contactsSlice = createSlice({
         builder => {
         builder.addCase(getContactsThunk.pending, state => {
             state.isLoading = true;
-            console.log('pending')
+     
         }).addCase(getContactsThunk.fulfilled, (state, { payload }) => {
             state.isLoading = false;
             state.error = null;
             state.contacts = payload;
-            console.log('fullfiled')
-        }).addCase(getContactsThunk.rejected, (state, { payload }) => {
+          
+        }).addCase(getContactsThunk.rejected, (state ) => {
             state.error = true;
-            console.log(current(state))
-            console.log(payload)
-        }).addCase(postContactsThunk.fulfilled, (state, { payload }) => {
+           
+        }).addCase(postContactsThunk.fulfilled, (state,{ payload }) => {
             state.isLoading = false;
             state.error = null;
-           
+            state.contacts.push(payload);
 
             
         }).addCase(deleteContactsThunk.fulfilled, (state, { payload }) => {

@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 const JoinPage = lazy(() => import('../pages/JonPage/JoinPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
-const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+
 const ContactsPage = lazy(() => import('../pages/ContactsPage/ContactsPage'));
 
 export const App = () => {
@@ -30,8 +30,8 @@ export const App = () => {
         <Layout>
           <Suspense fallback={<p>Loading...</p>}>
             <Routes>
-              <Route index element={<Navigate to="/home" />} />
-              <Route path="/home" element={<HomePage />} />
+              <Route index element={<Navigate to="/login" />} />
+       
               <Route path="/join" element={<JoinPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/contacts" element={<ContactsPage/>} />

@@ -15,7 +15,7 @@ export const selectFilteredContacts = createSelector(
       case (filter !== "") :
         return contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()));
       default:
-        return contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()));;
+        return contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()));
     }
   }
 );
