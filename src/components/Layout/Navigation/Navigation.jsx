@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
 
 import { selectAuthToken } from '../../../Redux/auth/auth.selector';
 import { logoutAction } from '../../../Redux/auth/auth.slice';
-//import { getProfileThunk } from '../../../Redux/profile/profile.thunk';
 import { Button } from '../../Button/Button';
 
 const getActiveClassName = ({ isActive }) => {
@@ -16,13 +15,7 @@ export const Navigation = () => {
   const dispatch = useDispatch();
 
   const token = useSelector(selectAuthToken);
- // const profile = useSelector(state => state.profile.data);
-   // const profile = false;
-  /*useEffect(() => {
-    // if (token) {
-    dispatch(getProfileThunk());
-    // }
-  }, [token, dispatch]);*/
+
 
   return (
     <div className="d-flex flex-column justify-content-between h-100">
