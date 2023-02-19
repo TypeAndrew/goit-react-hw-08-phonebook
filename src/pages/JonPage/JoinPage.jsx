@@ -1,4 +1,5 @@
-import { useState, dispatch, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { authLoginThunk } from 'Redux/auth/auth.thunk';
 
 import { Link } from 'react-router-dom';
@@ -17,6 +18,8 @@ const initialState = {
 };
 
 const JoinPage = () => {
+
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [values, setValues] = useState(initialState);
 
@@ -35,7 +38,7 @@ const handleChange = event => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    
     try {
       setIsLoading(true);
       await publicApi.post('/signUp', values);
