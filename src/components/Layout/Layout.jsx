@@ -6,7 +6,7 @@ import { Sidebar } from './SlideBar/SlideBar';
 export const Layout = ({ children }) => {
   return (
     <>
-      <div className="d-flex h-100">
+      <div className="d-flex flex-row">
         <Sidebar />
 
         <main

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -30,7 +30,8 @@ const LoginPage = () => {
 
     try {
       await dispatch(authLoginThunk(values)).unwrap();
-      toast.success('Success');
+      
+      //toast.success('Success!', {duration: 3000,close: true,}).showToast();
     } catch {
       toast.error('Error');
     }

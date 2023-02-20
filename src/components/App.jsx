@@ -1,4 +1,5 @@
-
+import { PrivateRoute } from './AuthRoutes/PrivateRoute';
+import { PublicRoute } from './AuthRoutes/PublicRoute';
 
 import { Layout } from './Layout/Layout';
 import { lazy, Suspense } from 'react';
@@ -18,11 +19,13 @@ export const App = () => {
           height: '100vh',
           display: 'flex',
          // justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'column',
+          alignItems: 'stretch',
+          flexDirection: 'row',
           fontSize: 30,
-          color: '#010101',
+          //color: '#010101',
           listStyleType: 'none',
+          
+          //alignItems: 'stretch',
           //padding: '10px 10px',
         }}
     >
@@ -30,11 +33,15 @@ export const App = () => {
         <Layout>
           <Suspense fallback={<p>Loading...</p>}>
             <Routes>
-              <Route index element={<Navigate to="/login" />} />
-       
-              <Route path="/join" element={<JoinPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/contacts" element={<ContactsPage/>} />
+              <Route path="" element={<PublicRoute />}>
+                <Route index element={<Navigate to="/login" />} />
+                <Route path="/join" element={<JoinPage />} />
+                <Route path="/login" element={<LoginPage />} />
+              </Route > 
+              <Route path="" element={<PrivateRoute />}>
+              
+                <Route path="/contacts" element={<ContactsPage />} />
+              </Route>    
             </Routes>
             
            

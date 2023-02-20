@@ -27,7 +27,7 @@ const JoinPage = () => {
 
 useEffect(()=>
 {  
-    console.log('jfhjfjf')
+    //console.log('jfhjfjf')
     setValues(prev => ({ ...prev, name: values.first_name+ ' '+ values.last_name }));
     },[values.first_name, values.last_name])
 
@@ -44,7 +44,7 @@ const handleChange = event => {
       await publicApi.post('/signUp', values);
       dispatch(authLoginThunk(...values));
       setIsLoading(false);
-      toast.success('Success!');
+      //toast.success('Success!');
     } catch (e) {
       console.log(e);
       toast.error('Some error');

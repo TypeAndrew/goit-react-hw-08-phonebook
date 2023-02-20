@@ -21,13 +21,14 @@ export const Navigation = () => {
     <div className="d-flex flex-column justify-content-between h-100">
       <div className="d-flex flex-column justify-content-between">
         {!token && <h2 className="h3 mb-4">Please log in!</h2>}
-
-   
+        <div>{token?.user.email}</div>
+        <div>{token?.user.name}</div>
 
     
 
         {token ? (
           <>
+         
             <NavLink to="contacts" end className={getActiveClassName}>
               Contacts list
             </NavLink>

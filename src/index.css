@@ -23,7 +23,7 @@ form{
 
 
 li>div {
-width: 300px
+  width: 300px
   
 }
 
@@ -34,4 +34,9 @@ li{
 .tab-pane {
     border: solid;
     padding: 10px 10px;
+}
+
+.Toastify {
+  margin-top: 40px;
+ 
 }
