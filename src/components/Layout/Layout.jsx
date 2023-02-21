@@ -13,7 +13,8 @@ export const Layout = ({ children }) => {
           className="tab-content p-5 h-100 col-9"
           style={{ minHeight: '100vh' }}
         >
-          <div className="tab-pane fade show active">{children}</div>
+          <div style={{background: 'blanchedalmond',
+           }} className="tab-pane fade show active">{children}</div>
         </main>
       </div>
 

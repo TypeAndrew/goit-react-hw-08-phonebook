@@ -21,7 +21,7 @@ export const App = () => {
          // justifyContent: 'center',
           alignItems: 'stretch',
           flexDirection: 'row',
-          fontSize: 30,
+          fontSize: 20,
           //color: '#010101',
           listStyleType: 'none',
           

@@ -31,6 +31,7 @@ export const ContactForm = () => {
             <>
         
                 <form onSubmit={onSubmit}>
+                    <div style={{display: 'flex'}}>
                     <div>
                         <label>Name</label>
             
@@ -62,6 +63,7 @@ export const ContactForm = () => {
            
     
                     <button  type="submit">Add contact</button>
+                    </div>
                 </form>
             </>
         )

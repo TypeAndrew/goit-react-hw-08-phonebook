@@ -16,7 +16,7 @@ export function Filter()  {
   
   
     return (
-      <label > Filter
+      <label style={{display: 'flex', justifyContent: 'center'}}> Filter
           <input onChange={handleFilter}
           type="text"
           name="filter"

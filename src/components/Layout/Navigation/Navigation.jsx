@@ -30,7 +30,7 @@ export const Navigation = () => {
           <>
          
             <NavLink to="contacts" end className={getActiveClassName}>
-              Contacts list
+              Contacts
             </NavLink>
 
             <Button className="btn-danger mt-5" onClick={() => dispatch(logoutAction())}>Log Out</Button>

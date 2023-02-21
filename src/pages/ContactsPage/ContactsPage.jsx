@@ -13,9 +13,14 @@ const ContactsPage = () => {
 
   return (
     <>
-      <h1>Phonebook </h1>
+      <h1 style={{display: 'flex',
+            justifyContent: 'center',
+            borderStyle: 'outset',
+            borderRadius: '10%',
+            color: 'white',
+            background: 'dodgerblue',}}>Phonebook </h1>
             <ContactForm   />
-            <h2>Contacts</h2>
+            <h2 style={{display: 'flex', justifyContent: 'center'}}>Contacts </h2>
             <Filter />
             <ul>
             < Contacts />
